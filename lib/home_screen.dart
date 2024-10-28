@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:map_prac/map_screen.dart';
+import 'api_prac/users_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,6 +21,12 @@ class HomeScreen extends StatelessWidget {
               }, 
               child: const Text("Google Map"),
               ),
+            ElevatedButton(
+              onPressed: () {
+                Get.to(()=>  const UsersDetailsScreen());
+              }, 
+              child: const Text("Users Details"),
+              ),  
           ],
         ),
       ),

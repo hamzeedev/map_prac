@@ -19,7 +19,7 @@ class MapScreen extends StatelessWidget {
     var controller = Get.put(MapsScreenController());
 
     var loading = false.obs;
-    RxSet<Marker> markers = RxSet({});
+    Rx<Set<Marker>> markers = Rx({});
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +66,7 @@ class MapScreen extends StatelessWidget {
                   context.showSnackBar("No locations found");
                 } else if (points.length == 1) {
                   var address = points.first;
-                 
+
                   markers.value = {
                     ...markers.value,
                     Marker(
@@ -91,9 +91,23 @@ class MapScreen extends StatelessWidget {
                                 (e) => ListTile(
                                   title: Text("${e.latitude}, ${e.longitude}"),
                                   onTap: () async {
+                                    var address = e;
                                     Navigator.pop(context);
                                     await moveMap(e,
                                         query: data, results: points);
+                                    markers.value = {
+                                      ...markers.value,
+                                      Marker(
+                                        markerId: MarkerId(
+                                            address.latitude.toString()),
+                                        infoWindow: InfoWindow(
+                                          title: "Current Location",
+                                          snippet: data,
+                                        ),
+                                        position: LatLng(address.latitude,
+                                            address.longitude),
+                                      ),
+                                    };
                                   },
                                 ),
                               )
