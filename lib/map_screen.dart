@@ -3,7 +3,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_prac/controllers/maps_screen_controller.dart';
-
 import 'package:map_prac/customs/my_text_field.dart';
 import 'package:map_prac/extensions/extensions.dart';
 import 'package:map_prac/searchs_history_screen.dart';

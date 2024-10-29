@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:map_prac/api/makeup_home_screen.dart';
 import 'package:map_prac/map_screen.dart';
 import 'api_prac/users_details_screen.dart';
 
@@ -26,7 +27,13 @@ class HomeScreen extends StatelessWidget {
                 Get.to(()=>  const UsersDetailsScreen());
               }, 
               child: const Text("Users Details"),
-              ),  
+              ),
+            ElevatedButton(
+              onPressed: () {
+                Get.to(()=>  const MakeupHomeScreen());
+              }, 
+              child: const Text("Makeup"),
+              ),      
           ],
         ),
       ),
