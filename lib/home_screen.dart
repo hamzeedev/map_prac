@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:map_prac/api/makeup_home_screen.dart';
-import 'package:map_prac/map_screen.dart';
+import 'package:map_prac/api_prac_more/makeup_home_screen.dart';
+import 'package:map_prac/map_prac/map_screen.dart';
 import 'api_prac/users_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
