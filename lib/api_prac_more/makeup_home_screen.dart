@@ -24,48 +24,62 @@ class MakeupHomeScreen extends StatelessWidget {
               Obx(
                 () {
                   return controller.loading.value
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : controller.products.isNotEmpty
+                      ? const Center( child: CircularProgressIndicator(),)
+                      :  controller.productsList.isNotEmpty //!without model //controller.products.isNotEmpty
                           ? ListView.builder(
                               itemBuilder: (_, index) {
-                                var item = controller.products[index];
+                                //! without model - below one..
+                                // var item = controller.products[index];
+                                //? with model - below one..
+                                 var item = controller.productsList[index];
 
                                 return ListTile(
-                                  title: Text(item['name']),
-                                  subtitle: Text(item['brand']),
-                                  trailing: Text(item['price'].toString()),
-                                  leading: Container(
+                                  //! without model - below one..
+                                  // title: Text(item['name']),
+                                  // subtitle: Text(item['brand']),
+                                  // trailing: Text(item['price'].toString()),
+                                  // leading: Container(
+                                  //   height: 50,
+                                  //   width: 50,
+                                  //   decoration: const BoxDecoration(
+                                  //     shape: BoxShape.circle,
+                                  //   ),
+                                  //   child: Image.network(
+                                  //     item['image_link'],
+                                  //     fit: BoxFit.cover,
+                                  //     errorBuilder: (_, __, ___) {
+                                  //       return Image.asset(
+                                  //           "assets/images/place.png");
+                                  //     },
+                                  //   ),
+                                  // ),
+                                  //? with model
+                                  title:    Text(item.name),
+                                  subtitle: Text(item.brand),
+                                  trailing: Text(item.price.toString()),
+                                  leading:  Container(
                                     height: 50,
                                     width: 50,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
+                                    decoration: const BoxDecoration(shape: BoxShape.circle,),
                                     child: Image.network(
-                                      item['image_link'],
+                                      item.thumbnail,
                                       fit: BoxFit.cover,
                                       errorBuilder: (_, __, ___) {
-                                        return Image.asset(
-                                            "assets/images/place.png");
-                                      },
+                                        return Image.asset("assets/images/place.png");},
                                     ),
                                   ),
                                 );
                               },
-                              itemCount: controller.products.length,
+                              itemCount: controller.productsList.length,
                             )
-                          : const Center(
-                              child: Text("No Products found"),
-                            );
+                          : const Center(child: Text("No Products found"),);
                 },
               ),
               MyTextField(
                 hint: 'Brand',
                 onFieldSubmitted: (brand) {
                   controller.fetchAllProducts({"brand": brand});
-                },
-              ).marginAll(10)
+                },).marginAll(10)
             ],
           ),
         ),
